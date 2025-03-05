@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="15dp"
+    android:paddingTop="10dp"
+    android:background="@drawable/radius_border">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:textSize="25dp"
+            android:text="修改"
+            android:textAlignment="center"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Word:"
+                android:textSize="20dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="词性:"
+                android:textSize="20dp"
+                android:layout_gravity="right" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="词义:"
+                android:textSize="20dp"
+                android:layout_gravity="right" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="360dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp">
+
+            <EditText
+                android:id="@+id/input4"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="请输入..."
+                android:singleLine="true"
+                android:textSize="15dp"
+                android:textColor="#425066">
+                <requestFocus/><!--按键焦点 -->
+            </EditText>
+
+            <EditText
+                android:id="@+id/input5"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="请输入..."
+                android:singleLine="true"
+                android:textSize="15dp"
+                android:textColor="#425066">
+            </EditText>
+
+            <EditText
+                android:id="@+id/input6"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="请输入..."
+                android:singleLine="true"
+                android:textSize="15dp"
+                android:textColor="#425066">
+            </EditText>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:id="@+id/sure_b2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:background="@drawable/btn1"
+            android:layout_marginLeft="70dp"/>
+        <Button
+            android:id="@+id/cancel2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:background="@drawable/btn1"
+            android:layout_marginLeft="50dp"/>
+    </LinearLayout>
+</LinearLayout>
