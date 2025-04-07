@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_ci"
+        android:title="词"
+        android:icon="@drawable/word"
+        android:iconTint="#1771A6"/>
+    <item
+        android:id="@+id/nav_sentence"
+        android:title="句"
+        android:icon="@drawable/sentence" />
+    <item
+        android:id="@+id/nav_rem"
+        android:title="默"
+        android:icon="@drawable/memory" />
+    <item
+        android:id="@+id/about_we"
+        android:title="we"
+        android:icon="@drawable/we"/>
+</menu>

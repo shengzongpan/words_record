@@ -13,11 +13,11 @@ import androidx.appcompat.app.AlertDialog;
 import java.util.ArrayList;
 
 public class MyItemClickListener implements AdapterView.OnItemClickListener {
-    private MainActivity mainActivity;
+    private final Fragment_ci fragment_ci;
     private ArrayList<String> strs;
 
-    public MyItemClickListener(MainActivity mainActivity, ArrayList<String> strs){
-        this.mainActivity = mainActivity;
+    public MyItemClickListener(Fragment_ci fragment_ci, ArrayList<String> strs){
+        this.fragment_ci = fragment_ci;
         this.strs = strs;
     }
     @Override
@@ -26,14 +26,14 @@ public class MyItemClickListener implements AdapterView.OnItemClickListener {
         //tx1 = (TextView) findViewById(R.id.d2_t1);
         //tx1.setText(strs.get(position));
         //所以得加个runOnUiThread
-        mainActivity.runOnUiThread(new Runnable() {
+        fragment_ci.getMainActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);
+                AlertDialog.Builder builder = new AlertDialog.Builder(fragment_ci.getMainActivity());
                 /**getLayoutInflater在除了mainactivity中无法直接使用
                  用下面方法进行使用**/
                 //dialog2转成view
-                LayoutInflater inflater = mainActivity.getLayoutInflater();
+                LayoutInflater inflater = fragment_ci.getLayoutInflater();
                 View dialogview = inflater.inflate(R.layout.dialog2, null);
                 //添加布局，设置是否可以中止
                 builder.setView(dialogview);
@@ -56,7 +56,7 @@ public class MyItemClickListener implements AdapterView.OnItemClickListener {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        Dialog_Change dialog_change = new Dialog_Change(mainActivity, strs);
+                        Dialog_Change dialog_change = new Dialog_Change(fragment_ci, strs);
                         dialog_change.showdialog_change(position);
                     }
                 });

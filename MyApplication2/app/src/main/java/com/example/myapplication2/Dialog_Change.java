@@ -15,19 +15,19 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Dialog_Change {
-    private MainActivity mainActivity;
+    private Fragment_ci fragment_ci;
     ArrayList<String> strs;
 
-    public Dialog_Change(MainActivity mainActivity, ArrayList<String> strs){
-        this.mainActivity = mainActivity;
+    public Dialog_Change(Fragment_ci fragment_ci, ArrayList<String> strs){
+        this.fragment_ci = fragment_ci;
         this.strs = strs;
     }
 
 
     public void showdialog_change(int position) {
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(mainActivity);
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(fragment_ci.getMainActivity());
 
-        LayoutInflater inflater = mainActivity.getLayoutInflater();
+        LayoutInflater inflater = fragment_ci.getLayoutInflater();
         View dialogview2 = inflater.inflate(R.layout.dialog_change, null);
         builder1.setView(dialogview2);
 
@@ -54,14 +54,14 @@ public class Dialog_Change {
                 Words words = new Words(inputw, inputm, inputx);
                 String a = words.getEn_word() + "  --  " + words.getCixing() + "  --  " + words.getCn_mean();
                 strs.set(position, a);
-                ArrayAdapter<String> adapter = mainActivity.getAdapter();
+                ArrayAdapter<String> adapter = fragment_ci.getAdapter();
                 //通知适配器数据已经更改
                 adapter.notifyDataSetChanged();
                 dialog2.dismiss();
                 //获取路径
-                File externfile = mainActivity.getExternfile();
-                String filepath = mainActivity.getFilepath();
-                int n = mainActivity.getN();
+                File externfile = fragment_ci.getExternfilef_w();
+                String filepath = fragment_ci.getFilepath();
+                int n = fragment_ci.getN();
                 File file = new File(externfile, filepath);
                 //存入文件
                 File_out file_out = new File_out(filepath, n);

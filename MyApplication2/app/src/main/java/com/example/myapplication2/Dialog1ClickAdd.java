@@ -4,20 +4,18 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.util.ArrayList;
-
+//添加按钮显示及实现
 public class Dialog1ClickAdd implements View.OnClickListener {
-    private MainActivity mainActivity;
+    private Fragment_ci fragment_ci;
     private ArrayList<String> strs;
     private File externfile;
     private String filepath;
@@ -25,28 +23,28 @@ public class Dialog1ClickAdd implements View.OnClickListener {
     private ArrayAdapter<String> adapter;
     private TextView tx2;
 
-    public Dialog1ClickAdd(MainActivity mainActivity){
-        this.mainActivity = mainActivity;
+    public Dialog1ClickAdd(Fragment_ci fragment_ci){
+        this.fragment_ci = fragment_ci;
     }
     @Override
     public void onClick(View v) {
-        strs = mainActivity.getStrs();
-        externfile = mainActivity.getExternfile();
-        filepath = mainActivity.getFilepath();
-        n = mainActivity.getN();
-        adapter = mainActivity.getAdapter();
-        tx2 = mainActivity.getTx2();
+        strs = fragment_ci.getStrs();
+        externfile = fragment_ci.getExternfilef_w();
+        filepath = fragment_ci.getFilepath();
+        n = fragment_ci.getN();
+        adapter = fragment_ci.getAdapter();
+        tx2 = fragment_ci.getTx2();
         showdialog1();
     }
 
     protected void showdialog1() {
 
-        AlertDialog.Builder dialog1 = new AlertDialog.Builder(mainActivity);
+        AlertDialog.Builder dialog1 = new AlertDialog.Builder(fragment_ci.getMainActivity());
         //设置dialog标题
         //dialog1.setTitle("添加"); 不设置标题了太丑了
         //加载xml布局
-        LayoutInflater inflater = mainActivity.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog1, null);
+        LayoutInflater inflater = fragment_ci.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_add, null);
         dialog1.setView(dialogView);
         //获取布局中的输入框
         //final 定义变量，表示变量值不可改变
@@ -65,7 +63,7 @@ public class Dialog1ClickAdd implements View.OnClickListener {
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
-        //设置按钮
+        //设置按钮事件
         b_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,40 +90,6 @@ public class Dialog1ClickAdd implements View.OnClickListener {
                 file_out.write(strs, file);
             }
         });
-        //dialog中的button太丑了
-        /**dialog1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-        @Override public void onClick(DialogInterface dialog, int which) {
-        //获取输入框中的文字
-        String text1 = input1.getText().toString();
-        String text2 = input2.getText().toString();
-        String text3 = input3.getText().toString();
-        //传入words对象
-        words = new Words(text1, text3, text2);
-        //增加集合
-        strs.add(words.getEn_word() + "  --  " + words.getCixing() + "  --  " + words.getCn_mean());
-        n++;
-
-        //通知适配器数据已经更改
-        adapter.notifyDataSetChanged();
-
-        //更新record数量
-        tx2.setText("Record数量: " + n);
-
-        File externfile = getExternalFilesDir(null);
-        if(externfile == null){
-        externfile =getFilesDir();
-        }
-        File file = new File(externfile, filepath);
-        //存入文件
-        File_out file_out = new File_out(filepath, n);
-        file_out.write(strs, file);
-        }
-        });
-         dialog1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-        @Override public void onClick(DialogInterface dialog, int which) {
-
-        }
-        });**/
         b_can.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,3 +98,37 @@ public class Dialog1ClickAdd implements View.OnClickListener {
         });
     }
 }
+    //dialog中的button太丑了
+    /**dialog1.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+    @Override public void onClick(DialogInterface dialog, int which) {
+    //获取输入框中的文字
+    String text1 = input1.getText().toString();
+    String text2 = input2.getText().toString();
+    String text3 = input3.getText().toString();
+    //传入words对象
+    words = new Words(text1, text3, text2);
+    //增加集合
+    strs.add(words.getEn_word() + "  --  " + words.getCixing() + "  --  " + words.getCn_mean());
+    n++;
+
+    //通知适配器数据已经更改
+    adapter.notifyDataSetChanged();
+
+    //更新record数量
+    tx2.setText("Record数量: " + n);
+
+    File externfile = getExternalFilesDir(null);
+    if(externfile == null){
+    externfile =getFilesDir();
+    }
+    File file = new File(externfile, filepath);
+    //存入文件
+    File_out file_out = new File_out(filepath, n);
+    file_out.write(strs, file);
+    }
+    });
+     dialog1.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+    @Override public void onClick(DialogInterface dialog, int which) {
+
+    }
+    });**/

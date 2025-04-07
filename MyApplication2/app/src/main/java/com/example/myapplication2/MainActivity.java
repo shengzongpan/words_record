@@ -2,7 +2,6 @@ package com.example.myapplication2;
 
 
 import static android.widget.AdapterView.*;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -14,7 +13,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.Layout;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -33,45 +35,23 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-    private static final int REQUEST_CODE = 1;
-    //计数
-    private int n = 0;
-    //用AraayList集合来存储
-    private ArrayList<String> strs = new ArrayList<>();
-    //文件路径
-    private String filepath = "vocabulary.txt";
-    //控件
-    private TextView tx2; //record 全局变量
-    private Button b_add; //add 按钮
-    //Words words;
-    private ArrayAdapter<String> adapter;
-    private File externfile;
-
-    public TextView getTx2(){
-        return tx2;
-    }
-    public ArrayList<String> getStrs(){
-        return strs;
-    }
-    public ArrayAdapter<String> getAdapter(){
-        return adapter;
-    }
-    public String getFilepath(){
-        return filepath;
-    }
-    public File getExternfile(){
-        return externfile;
-    }
-    public int getN(){
-        return n;
-    }
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
+    //navigation
+    private NavigationBarView navigationBarView;
+    //fragment
+    private Fragment_ci fragment_ci;
+    private Fragment_sentence fragmentSentence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,36 +59,30 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        //读取
-        externfile = getExternalFilesDir(null);
-        if (externfile == null) {
-            externfile = getFilesDir();
+        //fragment初始化(需要放在navigation之前，因为下面已经要显示了)
+        this.fragment_ci = new Fragment_ci(this);
+        this.fragmentSentence = new Fragment_sentence();
+
+        //navigation
+        navigationBarView = findViewById(R.id.nav_view);
+        navigationBarView.setOnItemSelectedListener(this::onNavigationItemSelected);
+        navigationBarView.setSelectedItemId(R.id.nav_ci);
+
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FragmentTransaction  fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        //这里没有new因为上面已经new过了，直接使用上面的实例，不然会浪费内存需要释放掉，且返回不能回到用户所滑位置
+        switch (item.getItemId()) {
+            case R.id.nav_ci:
+                fragmentTransaction.replace(R.id.frame_home, this.fragment_ci).commit();
+                return true;
+            case R.id.nav_sentence:
+                fragmentTransaction.replace(R.id.frame_home, this.fragmentSentence).commit();
+                return true;
         }
-        File file = new File(externfile, filepath);
-        File_in file_in = new File_in(filepath);
-        try {
-            strs = file_in.readx(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        n = file_in.getN();
-
-        //更新record数量
-        tx2 = (TextView) findViewById(R.id.text2);
-        tx2.setText("Record数量: " + n);
-
-
-        //创建ArrayAdapter
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, strs);
-        //获取ListView对象，通过调用setAdapter方法为ListView设置Adapter设置适配器
-        ListView listview = (ListView) findViewById(R.id.list_item);
-        listview.setAdapter(adapter);
-
-        //给listview添加点击事件
-        listview.setOnItemClickListener(new MyItemClickListener(this, strs));
-
-        //给增加按钮添加事件
-        b_add = findViewById(R.id.b_add);
-        b_add.setOnClickListener(new Dialog1ClickAdd(this));
+        return true;
     }
 }
