@@ -39,7 +39,7 @@ public class Dialog1ClickAdd implements View.OnClickListener {
 
     protected void showdialog1() {
 
-        AlertDialog.Builder dialog1 = new AlertDialog.Builder(fragment_ci.getMainActivity());
+        AlertDialog.Builder dialog1 = new AlertDialog.Builder(fragment_ci.getActivity());
         //设置dialog标题
         //dialog1.setTitle("添加"); 不设置标题了太丑了
         //加载xml布局

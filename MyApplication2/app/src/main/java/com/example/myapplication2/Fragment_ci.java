@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class Fragment_ci extends Fragment {
     private final MainActivity mainActivity;
 
+    //listview 适配器
     private ArrayAdapter<String> adapter;
     //计数
     private int n = 0;
@@ -86,7 +87,7 @@ public class Fragment_ci extends Fragment {
 
 
         //创建ArrayAdapter
-        adapter = new ArrayAdapter<String>(this.mainActivity, android.R.layout.simple_expandable_list_item_1, strs);
+        adapter = new ArrayAdapter<String>(word_frag.getContext(), android.R.layout.simple_expandable_list_item_1, strs);
         //获取ListView对象，通过调用setAdapter方法为ListView设置Adapter设置适配器
         ListView listview = (ListView) word_frag.findViewById(R.id.list_item);
         listview.setAdapter(adapter);
@@ -97,6 +98,7 @@ public class Fragment_ci extends Fragment {
         //给增加按钮添加事件
         b_add = word_frag.findViewById(R.id.b_add);
         b_add.setOnClickListener(new Dialog1ClickAdd(this));
+
         return word_frag;
     }
 }
