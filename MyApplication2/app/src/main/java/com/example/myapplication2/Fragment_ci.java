@@ -22,29 +22,21 @@ public class Fragment_ci extends Fragment {
 
     //listview 适配器
     private ArrayAdapter<String> adapter;
-    //计数
-    private int n = 0;
     //文件路径
-    private String filepath = "vocabulary.txt";
+    private final String filepath = "vocabulary.txt";
     private File externfile;
     //控件
     private Button b_add; //add 按钮
-    private TextView tx2; //record 全局变量
-    //用AraayList集合来存储
+    private TextView tx_rd; //record 全局变量
+    //用ArrayList集合来存储
     private ArrayList<String> strs = new ArrayList<>();
 
     //get set方法
     public TextView getTx2() {
-        return tx2;
+        return tx_rd;
     }
     public ArrayAdapter<String> getAdapter() {
         return adapter;
-    }
-    public int getN() {
-        return n;
-    }
-    public Button getB_add() {
-        return b_add;
     }
     public ArrayList<String> getStrs() {
         return strs;
@@ -69,27 +61,26 @@ public class Fragment_ci extends Fragment {
         View word_frag = inflater.inflate(R.layout.word_fragment, container, false);
 
         //读取文件路径并读出数据
-        externfile = mainActivity.getExternalFilesDir(null);
+        externfile = requireContext().getExternalFilesDir(null);
         if (externfile == null) {
-            externfile = mainActivity.getFilesDir();
+            externfile = requireContext().getFilesDir();
         }
+        //存在获取这个文件，不存在新建这个文件
         File file = new File(externfile, filepath);
-        File_in file_in = new File_in(filepath);
         try {
-            strs = file_in.readx(file);
+            strs = Dfile.readx(file);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        n = file_in.getN();
         //更新record数量
-        tx2 = (TextView) word_frag.findViewById(R.id.text2);
-        tx2.setText("Record数量: " + n);
+        tx_rd = word_frag.findViewById(R.id.text2);
+        tx_rd.setText("Record数量: " + strs.size());
 
 
         //创建ArrayAdapter
-        adapter = new ArrayAdapter<String>(word_frag.getContext(), android.R.layout.simple_expandable_list_item_1, strs);
+        adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_expandable_list_item_1, strs);
         //获取ListView对象，通过调用setAdapter方法为ListView设置Adapter设置适配器
-        ListView listview = (ListView) word_frag.findViewById(R.id.list_item);
+        ListView listview = word_frag.findViewById(R.id.list_item);
         listview.setAdapter(adapter);
 
         //给listview添加点击事件
@@ -97,7 +88,7 @@ public class Fragment_ci extends Fragment {
 
         //给增加按钮添加事件
         b_add = word_frag.findViewById(R.id.b_add);
-        b_add.setOnClickListener(new Dialog1ClickAdd(this));
+        b_add.setOnClickListener(new DialogWordClickAdd(this));
 
         return word_frag;
     }

@@ -1,12 +1,8 @@
 package com.example.myapplication2;
 
-import android.content.Context;
-import android.graphics.Canvas;
+
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,10 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class DialogSenClickAdd implements View.OnClickListener{
@@ -25,6 +20,7 @@ public class DialogSenClickAdd implements View.OnClickListener{
     private final Fragment_sentence fragmentSentence;
     private ArrayList<String> str;
     private ArrayAdapter<String> adapter;
+    private File file;
 
     public DialogSenClickAdd(Fragment_sentence fragmentSentence) {
         this.fragmentSentence = fragmentSentence;
@@ -37,7 +33,7 @@ public class DialogSenClickAdd implements View.OnClickListener{
     }
 
     public void show_add_dialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(fragmentSentence.getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(fragmentSentence.requireContext());
 
         LayoutInflater layoutInflater = fragmentSentence.getLayoutInflater();
         View dialogview = layoutInflater.inflate(R.layout.sentence_add_dialog, null);
@@ -68,6 +64,9 @@ public class DialogSenClickAdd implements View.OnClickListener{
                 adapter.notifyDataSetChanged();
                 //关闭窗口
                 dialog.dismiss();
+
+                file = fragmentSentence.getFile();
+                Dfile.write(str, file);
             }
         });
 
