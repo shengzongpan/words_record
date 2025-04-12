@@ -32,10 +32,10 @@ public class DialogWordClickAdd implements View.OnClickListener {
         filepath = fragment_ci.getFilepath();
         adapter = fragment_ci.getAdapter();
         tx2 = fragment_ci.getTx2();
-        showdialog1();
+        show_dialog1();
     }
 
-    protected void showdialog1() {
+    protected void show_dialog1() {
 
         AlertDialog.Builder dialog1 = new AlertDialog.Builder(fragment_ci.requireContext());
         //设置dialog标题

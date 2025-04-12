@@ -10,7 +10,7 @@
         android:title="句"
         android:icon="@drawable/sentence" />
     <item
-        android:id="@+id/nav_rem"
+        android:id="@+id/nav_mem"
         android:title="默"
         android:icon="@drawable/memory" />
     <item

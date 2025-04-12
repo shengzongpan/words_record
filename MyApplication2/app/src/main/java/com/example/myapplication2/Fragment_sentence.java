@@ -46,6 +46,7 @@ public class Fragment_sentence extends Fragment {
         file = new File(externfile, filepath);
         try {
             sen_str = Dfile.readx(file);
+            sen_str = Str_deal.sui_ji(sen_str);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

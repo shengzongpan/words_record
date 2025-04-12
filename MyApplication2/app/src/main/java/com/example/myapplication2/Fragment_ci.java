@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -17,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Fragment_ci extends Fragment {
+public class Fragment_ci extends Fragment{
     private final MainActivity mainActivity;
 
     //listview 适配器
@@ -72,6 +73,7 @@ public class Fragment_ci extends Fragment {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        strs = Str_deal.sui_ji(strs);
         //更新record数量
         tx_rd = word_frag.findViewById(R.id.text2);
         tx_rd.setText("Record数量: " + strs.size());
@@ -85,7 +87,7 @@ public class Fragment_ci extends Fragment {
 
         //给listview添加点击事件
         listview.setOnItemClickListener(new MyItemClickListener(this, strs));
-
+        listview.setOnItemLongClickListener(new MyItemLongClickListener(this));
         //给增加按钮添加事件
         b_add = word_frag.findViewById(R.id.b_add);
         b_add.setOnClickListener(new DialogWordClickAdd(this));

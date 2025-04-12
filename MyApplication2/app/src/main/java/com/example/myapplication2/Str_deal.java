@@ -1,12 +1,51 @@
 package com.example.myapplication2;
 
+import androidx.lifecycle.viewmodel.CreationExtras;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 //处理字符串，如随机，排序，搜索
 public class Str_deal {
-    static public ArrayList<String> sui_ji(ArrayList<String> str) {
 
+    //随机
+    static public ArrayList<String> sui_ji(ArrayList<String> str) {
+        Collections.shuffle(str);
         return str;
     }
-
+    //排序sort
+    static public ArrayList<String> sort(ArrayList<String> str) {
+        Collections.sort(str);
+        return str;
+    }
+    //随机选取10个word
+    static public ArrayList<String> choose_10(ArrayList<String> str) {
+        ArrayList<String> mem_word = new ArrayList<>();
+        Random random = new Random();
+        if(str.size() < 10) {
+            return str;
+        }
+        while(mem_word.size() < 10) {
+            int index = random.nextInt(str.size());
+            mem_word.add(str.get(index));
+            str.remove(index);
+        }
+        return mem_word;
+    }
+    //将string从1--1--1分开，重新变成Word类
+    static public ArrayList<Words> convert(ArrayList<String> str) {
+        ArrayList<Words> words = new ArrayList<>();
+        String en_word; String cn_mean; String cixing;
+        for(int i = 0; i < str.size(); i++) {
+            String s = str.get(i);
+            String [] a =  s.split("--");
+            en_word = a[0].trim();
+            cixing = a[1].trim();
+            cn_mean = a[2].trim();
+            Words w = new Words(en_word, cn_mean, cixing);
+            words.add(w);
+        }
+        return words;
+    }
 }
