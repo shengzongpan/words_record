@@ -1,6 +1,7 @@
 package com.example.myapplication2;
 
-public class Words {
+
+public class Words{
     private String en_word;
     private String cn_mean;
     private String cixing;

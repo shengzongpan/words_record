@@ -34,7 +34,7 @@ public class Str_deal {
         return mem_word;
     }
     //将string从1--1--1分开，重新变成Word类
-    static public ArrayList<Words> convert(ArrayList<String> str) {
+    static public ArrayList<Words> convert_w(ArrayList<String> str) {
         ArrayList<Words> words = new ArrayList<>();
         String en_word; String cn_mean; String cixing;
         for(int i = 0; i < str.size(); i++) {
@@ -47,5 +47,30 @@ public class Str_deal {
             words.add(w);
         }
         return words;
+    }
+    //参数不同，返回值不同重新进行写
+    static public Words convert_w(String str) {
+        String en_word; String cn_mean; String cixing;
+            String [] a =  str.split("--");
+            en_word = a[0].trim();
+            cixing = a[1].trim();
+            cn_mean = a[2].trim();
+            Words w = new Words(en_word, cn_mean, cixing);
+
+        return w;
+    }
+    //将phrase从1--1分开，重新变成Sentence类
+    static public ArrayList<Sentence> convert_p(ArrayList<String> str) {
+        ArrayList<Sentence> sentences = new ArrayList<>();
+        String phrase;  String mean;
+        for(int i = 0; i < str.size(); i++) {
+            String s = str.get(i);
+            String [] a = s.split("--");
+            phrase = a[0].trim();
+            mean = a[1].trim();
+            Sentence sentence = new Sentence(phrase, mean);
+            sentences.add(sentence);
+        }
+        return sentences;
     }
 }

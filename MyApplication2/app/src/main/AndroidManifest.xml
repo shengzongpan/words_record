@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Memory_test">
-
+        </activity>
+        <activity android:name=".Detail_interface">
         </activity>
     </application>
 

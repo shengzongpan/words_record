@@ -30,7 +30,8 @@ public class Fragment_ci extends Fragment{
     private Button b_add; //add 按钮
     private TextView tx_rd; //record 全局变量
     //用ArrayList集合来存储
-    private ArrayList<String> strs = new ArrayList<>();
+    private ArrayList<String> strs;
+    private ArrayList<Words> words;
 
     //get set方法
     public TextView getTx2() {
@@ -54,6 +55,8 @@ public class Fragment_ci extends Fragment{
 
     public Fragment_ci(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
+        strs = this.mainActivity.getStr_w();
+        externfile = this.mainActivity.getExternFile();
     }
 
     @Nullable
@@ -61,18 +64,7 @@ public class Fragment_ci extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View word_frag = inflater.inflate(R.layout.word_fragment, container, false);
 
-        //读取文件路径并读出数据
-        externfile = requireContext().getExternalFilesDir(null);
-        if (externfile == null) {
-            externfile = requireContext().getFilesDir();
-        }
-        //存在获取这个文件，不存在新建这个文件
-        File file = new File(externfile, filepath);
-        try {
-            strs = Dfile.readx(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        //随机一下strs
         strs = Str_deal.sui_ji(strs);
         //更新record数量
         tx_rd = word_frag.findViewById(R.id.text2);
