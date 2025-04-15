@@ -73,4 +73,13 @@ public class Str_deal {
         }
         return sentences;
     }
+
+    static public Sentence convert_p(String str) {
+        String phrase;  String mean;
+            String [] a = str.split("--");
+            phrase = a[0].trim();
+            mean = a[1].trim();
+            Sentence sentence = new Sentence(phrase, mean);
+        return sentence;
+    }
 }

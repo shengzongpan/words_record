@@ -12,22 +12,29 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
 public class MyItemClickListener implements AdapterView.OnItemClickListener {
-    private final Fragment_ci fragment_ci;
+    private final Fragment fragment;
     private ArrayList<String> strs;
+    //0---代表word， 1--代表sentence
+    private int typeID;
 
-    public MyItemClickListener(Fragment_ci fragment_ci, ArrayList<String> strs){
-        this.fragment_ci = fragment_ci;
+    public MyItemClickListener(Fragment fragment, ArrayList<String> strs, int type){
+        this.fragment = fragment;
         this.strs = strs;
+        this.typeID = type;
     }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(fragment_ci.getContext(), Detail_interface.class);
-        intent.putExtra("str", strs.get(position));
-        fragment_ci.startActivity(intent);
+        Intent intent = new Intent(fragment.getContext(), Detail_interface.class);
+        intent.putStringArrayListExtra("strs", strs);
+        intent.putExtra("position", position + "");
+        intent.putExtra("id", typeID == 0?"word":"phrase");
+        fragment.startActivity(intent);
     }
 }
 //textView的显示,子线程里不能改变ui

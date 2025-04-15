@@ -1,31 +1,25 @@
 package com.example.myapplication2;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
-import java.util.ArrayList;
-
-public class Dialog_Change extends Dialog{
+public class DialogWordChange extends Dialog{
 
     public interface Dialog_changeListener {
-        public void return_to_activity(Words a, boolean yn);
+        public void return_to_activity(Words a);
     }
 
     private Dialog_changeListener listener;
     private final Detail_interface activity;
-    public Dialog_Change(Context context, Dialog_changeListener listener){
+    public DialogWordChange(Context context, Dialog_changeListener listener){
         super(context);
         this.activity= (Detail_interface) context;
         this.listener = listener;
@@ -36,7 +30,7 @@ public class Dialog_Change extends Dialog{
         AlertDialog.Builder builder1 = new AlertDialog.Builder(activity);
 
         LayoutInflater inflater = activity.getLayoutInflater();
-        View dialogview2 = inflater.inflate(R.layout.dialog_change, null);
+        View dialogview2 = inflater.inflate(R.layout.dialog_word_change, null);
         builder1.setView(dialogview2);
 
         Dialog dialog2 = builder1.create();
@@ -60,7 +54,7 @@ public class Dialog_Change extends Dialog{
             String inputm = editm.getText().toString();
             Words words = new Words(inputw, inputm, inputx);
             boolean yn = true;
-            listener.return_to_activity(words, yn);
+            listener.return_to_activity(words);
             dialog2.dismiss();
 //            strs.set(position, a);
 //            ArrayAdapter<String> adapter = activity.getAdapter();

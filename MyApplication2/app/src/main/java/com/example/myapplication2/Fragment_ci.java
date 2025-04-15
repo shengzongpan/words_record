@@ -1,6 +1,7 @@
 package com.example.myapplication2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Fragment_ci extends Fragment{
+
+//    private static String TAG = Fragment_ci.class.getSimpleName();
     private final MainActivity mainActivity;
 
     //listview 适配器
@@ -26,6 +29,7 @@ public class Fragment_ci extends Fragment{
     //文件路径
     private final String filepath = "vocabulary.txt";
     private File externfile;
+    private File file;
     //控件
     private Button b_add; //add 按钮
     private TextView tx_rd; //record 全局变量
@@ -55,8 +59,7 @@ public class Fragment_ci extends Fragment{
 
     public Fragment_ci(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
-        strs = this.mainActivity.getStr_w();
-        externfile = this.mainActivity.getExternFile();
+        externfile = mainActivity.getExternalFilesDir(null);
     }
 
     @Nullable
@@ -64,8 +67,8 @@ public class Fragment_ci extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View word_frag = inflater.inflate(R.layout.word_fragment, container, false);
 
-        //随机一下strs
-        strs = Str_deal.sui_ji(strs);
+        //Log.d(TAG, "OnCreateView");//只执行一次OnCreateView
+        strs = mainActivity.getStr_word();
         //更新record数量
         tx_rd = word_frag.findViewById(R.id.text2);
         tx_rd.setText("Record数量: " + strs.size());
@@ -78,12 +81,27 @@ public class Fragment_ci extends Fragment{
         listview.setAdapter(adapter);
 
         //给listview添加点击事件
-        listview.setOnItemClickListener(new MyItemClickListener(this, strs));
+        listview.setOnItemClickListener(new MyItemClickListener(this, strs, 0));
         listview.setOnItemLongClickListener(new MyItemLongClickListener(this));
         //给增加按钮添加事件
         b_add = word_frag.findViewById(R.id.b_add);
         b_add.setOnClickListener(new DialogWordClickAdd(this));
 
         return word_frag;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        try {
+            file = new File(externfile, filepath);
+            ArrayList<String> newStr = Dfile.readx(file);
+            strs.clear();
+            strs.addAll(newStr);
+            adapter.notifyDataSetChanged();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+//        Log.d(TAG, "onStart: " + strs);//每次打开都会调用
     }
 }

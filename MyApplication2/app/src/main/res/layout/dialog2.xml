@@ -18,7 +18,7 @@
         android:textAlignment="center"/>
 
     <Button
-        android:id="@+id/b_change"
+        android:id="@+id/b_change1"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="修改"

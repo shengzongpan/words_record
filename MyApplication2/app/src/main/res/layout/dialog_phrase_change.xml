@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:textSize="25dp"
-            android:text="添加"
+            android:text="修改"
             android:textAlignment="center"/>
     </LinearLayout>
     <LinearLayout
@@ -51,18 +51,18 @@
             android:layout_marginRight="10dp">
 
             <EditText
-                android:id="@+id/inputs1"
+                android:id="@+id/input_phrase"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="请输入..."
                 android:singleLine="true"
                 android:textSize="15dp"
                 android:textColor="#425066">
-                <requestFocus/>
+                <requestFocus/><!--按键焦点 -->
             </EditText>
 
             <EditText
-                android:id="@+id/inputs2"
+                android:id="@+id/input_mean"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="请输入..."
@@ -70,7 +70,6 @@
                 android:textSize="15dp"
                 android:textColor="#425066">
             </EditText>
-
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -79,7 +78,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp">
         <Button
-            android:id="@+id/sure_bs"
+            android:id="@+id/sure_b2"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="确定"
@@ -87,7 +86,7 @@
             android:background="@drawable/btn1"
             android:layout_marginLeft="70dp"/>
         <Button
-            android:id="@+id/cancels"
+            android:id="@+id/cancel2"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="取消"
