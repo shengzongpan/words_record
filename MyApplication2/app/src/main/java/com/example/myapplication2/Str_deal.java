@@ -21,11 +21,11 @@ public class Str_deal {
     }
     //随机选取10个word
     static public ArrayList<String> choose_10(ArrayList<String> str) {
-        ArrayList<String> mem_word = new ArrayList<>();
-        Random random = new Random();
         if(str.size() < 10) {
             return str;
         }
+        ArrayList<String> mem_word = new ArrayList<>();
+        Random random = new Random();
         while(mem_word.size() < 10) {
             int index = random.nextInt(str.size());
             mem_word.add(str.get(index));

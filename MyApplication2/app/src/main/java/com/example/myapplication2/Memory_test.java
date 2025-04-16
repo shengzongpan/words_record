@@ -5,6 +5,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
@@ -31,6 +33,18 @@ public class Memory_test extends AppCompatActivity {
     private File externfile;
     //记录第几个词
     private int n = 0;
+    private int sum;
+    private Button next_btn;
+    private EditText editText;
+    private TextView count_textview;
+    private TextView textView;
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        textView.setText(words.get(n).getCn_mean());
+        editText.setText("");
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,41 +52,69 @@ public class Memory_test extends AppCompatActivity {
         setContentView(R.layout.memory_test);
         ImageButton back_btn = findViewById(R.id.back_to_mem);
         read();
-        TextView textView = findViewById(R.id.test_tv);
+        next_btn = findViewById(R.id.next_word);
+        editText = findViewById(R.id.input_word);
+        count_textview = findViewById(R.id.mo_n);
+        textView = findViewById(R.id.test_tv);
+        sum = words.size();
         textView.setText(words.get(n).getCn_mean());
-        Button next_btn = findViewById(R.id.next_word);
-        EditText editText = findViewById(R.id.input_word);
-        TextView count_textview = findViewById(R.id.mo_n);
+        count_textview.setText(n + 1 + "/" + sum);
         next_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String input = editText.getText().toString();
                 //判断输入的单词是否正确
-                if(input.equals(words.get(n).getEn_word())) {
-                    //颜色从蓝逐渐变黑2秒钟
+                if (input.equals(words.get(n).getEn_word())) {
+                    if (n != sum) {
+                        //颜色从蓝逐渐变黑2秒钟
+                        ObjectAnimator colorAnimator = ObjectAnimator.ofObject(
+                                editText,"textColor",
+                                new ArgbEvaluator(),Color.BLUE, Color.BLACK
+                        );
+                        colorAnimator.setDuration(1000);
+                        colorAnimator.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                n++;
+                                textView.setText(words.get(n).getCn_mean());
+                                editText.setText("");
+                                count_textview.setText(n + 1 + "/" + sum);
+                                Toast.makeText(Memory_test.this,"正确!!!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        colorAnimator.start();
+                    }
+                    else {
+
+                    }
+                }
+                else {
                     ObjectAnimator colorAnimator = ObjectAnimator.ofObject(
-                            editText,"textColor",
-                            new ArgbEvaluator(),Color.BLUE, Color.BLACK
+                            editText, "textColor",new ArgbEvaluator(),
+                            Color.RED, Color.BLACK
                     );
                     colorAnimator.setDuration(1000);
                     colorAnimator.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
-//                            super.onAnimationEnd(animation);
-                              n++;
-                              textView.setText(words.get(n).getCn_mean());
-                              editText.setText("");
-                              count_textview.setText(n + 1 + "/10");
-                              Toast.makeText(Memory_test.this,"正确!!!", Toast.LENGTH_SHORT).show();
+                            super.onAnimationEnd(animation);
+                            Intent intent = new Intent(Memory_test.this, Error_Detail.class);
+                            intent.putExtra("word", words.get(n).getEn_word());
+                            intent.putExtra("mean", words.get(n).getCixing() + ". " + words.get(n).getCn_mean());
+                            startActivity(intent);
+                            Words word = words.get(n);
+                            words.remove(n);
+                            words.add(word);
+
                         }
                     });
                     colorAnimator.start();
                 }
-                else {
-
-                }
             }
         });
+
+
 
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".Detail_interface">
         </activity>
+        <activity android:name=".Error_Detail">
+        </activity>
     </application>
 
 </manifest>
