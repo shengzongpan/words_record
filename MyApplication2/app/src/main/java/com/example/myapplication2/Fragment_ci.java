@@ -82,7 +82,7 @@ public class Fragment_ci extends Fragment{
 
         //给listview添加点击事件
         listview.setOnItemClickListener(new MyItemClickListener(this, strs, 0));
-        listview.setOnItemLongClickListener(new MyItemLongClickListener(this));
+        listview.setOnItemLongClickListener(new MyItemLongClickListener(this, strs, mainActivity, adapter, filepath, externfile));
         //给增加按钮添加事件
         b_add = word_frag.findViewById(R.id.b_add);
         b_add.setOnClickListener(new DialogWordClickAdd(this));

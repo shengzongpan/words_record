@@ -65,29 +65,33 @@ public class Memory_test extends AppCompatActivity {
                 String input = editText.getText().toString();
                 //判断输入的单词是否正确
                 if (input.equals(words.get(n).getEn_word())) {
-                    if (n != sum) {
-                        //颜色从蓝逐渐变黑2秒钟
-                        ObjectAnimator colorAnimator = ObjectAnimator.ofObject(
-                                editText,"textColor",
-                                new ArgbEvaluator(),Color.BLUE, Color.BLACK
-                        );
-                        colorAnimator.setDuration(1000);
-                        colorAnimator.addListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                super.onAnimationEnd(animation);
-                                n++;
+
+                    //颜色从蓝逐渐变黑2秒钟
+                    ObjectAnimator colorAnimator = ObjectAnimator.ofObject(
+                            editText,"textColor",
+                            new ArgbEvaluator(),Color.BLUE, Color.BLACK
+                    );
+                    colorAnimator.setDuration(1000);
+                    colorAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            n++;
+                            if(n == sum) {
+                                finish();
+                                Intent intent = new Intent(Memory_test.this, Celebration.class);
+                                startActivity(intent);
+                            }
+                            else {
+
                                 textView.setText(words.get(n).getCn_mean());
                                 editText.setText("");
                                 count_textview.setText(n + 1 + "/" + sum);
                                 Toast.makeText(Memory_test.this,"正确!!!", Toast.LENGTH_SHORT).show();
                             }
-                        });
-                        colorAnimator.start();
-                    }
-                    else {
-
-                    }
+                        }
+                    });
+                    colorAnimator.start();
                 }
                 else {
                     ObjectAnimator colorAnimator = ObjectAnimator.ofObject(

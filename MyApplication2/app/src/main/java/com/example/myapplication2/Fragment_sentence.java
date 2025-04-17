@@ -51,7 +51,7 @@ public class Fragment_sentence extends Fragment {
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new MyItemClickListener(this, str_phrase, 1));
-
+        listView.setOnItemLongClickListener(new MyItemLongClickListener(this, str_phrase, mainActivity, adapter, filepath, externfile));
         LinearLayout linearLayout = frag_sen.findViewById(R.id.sen_add);
         //给linearlayout设置点击事件
         linearLayout.setOnClickListener(new DialogPhraseClickAdd(this));

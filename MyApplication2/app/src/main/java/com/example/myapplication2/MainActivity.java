@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     private Fragment_ci fragment_ci;
     private Fragment_sentence fragmentSentence;
     private Fragment_memory fragmentMemory;
+    private AboutWe aboutWe;
     //file
     private File externfile;
     private final String filepath = "vocabulary.txt";
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         this.fragment_ci = new Fragment_ci(this);
         this.fragmentSentence = new Fragment_sentence(this);
         this.fragmentMemory = new Fragment_memory();
+        this.aboutWe = new AboutWe();
         //navigation
         navigationBarView = findViewById(R.id.nav_view);
         navigationBarView.setOnItemSelectedListener(this::onNavigationItemSelected);
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 fragmentTransaction.replace(R.id.frame_home, this.fragmentMemory).commit();
                 return true;
             case R.id.about_we:
+                fragmentTransaction.replace(R.id.frame_home, this.aboutWe).commit();
                 return true;
         }
         return true;

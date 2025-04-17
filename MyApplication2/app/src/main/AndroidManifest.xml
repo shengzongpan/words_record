@@ -8,8 +8,8 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/record"
-        android:label="EN-Record"
+        android:icon="@drawable/ico"
+        android:label="随记"
         android:roundIcon="@drawable/ic_launcher_foreground"
         android:supportsRtl="true"
         android:enableOnBackInvokedCallback="true"
@@ -29,6 +29,8 @@
         <activity android:name=".Detail_interface">
         </activity>
         <activity android:name=".Error_Detail">
+        </activity>
+        <activity android:name=".Celebration">
         </activity>
     </application>
 
