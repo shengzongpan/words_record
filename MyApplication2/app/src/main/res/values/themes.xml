@@ -3,6 +3,7 @@
     <style name="Base.Theme.MyApplication2" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Theme.MyApplication2" parent="Base.Theme.MyApplication2" />

@@ -3,19 +3,20 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginRight="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="50dp">
+    android:background="@drawable/radius_border">
 
     <ImageButton
+        android:layout_marginTop="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:src="@drawable/back1"
         android:id="@+id/back_to_ci"/>
 
     <LinearLayout
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/radius_border"
@@ -32,6 +33,8 @@
     </LinearLayout>
 
     <TextView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/detail_mean"
         android:layout_marginTop="10dp"
         android:padding="10dp"
@@ -47,6 +50,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="修改"
-        android:background="@color/white"
+        android:background="@drawable/btn1"
+        android:textColor="@color/black"
         android:layout_gravity="center"/>
+
 </LinearLayout>

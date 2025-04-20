@@ -15,6 +15,7 @@
             android:layout_height="45dp"
             android:textSize="25dp"
             android:text="修改"
+            android:textColor="@color/black"
             android:textAlignment="center"/>
     </LinearLayout>
     <LinearLayout
@@ -31,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:text="Phrase:"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:layout_gravity="right"
                 android:layout_marginTop="10dp"/>
@@ -38,6 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:textColor="@color/black"
                 android:text="mean:"
                 android:textSize="20dp"
                 android:layout_gravity="right" />
@@ -57,7 +60,8 @@
                 android:hint="请输入..."
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="#425066">
+                android:gravity="bottom"
+                android:textColor="@color/black">
                 <requestFocus/><!--按键焦点 -->
             </EditText>
 
@@ -68,7 +72,8 @@
                 android:hint="请输入..."
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="#425066">
+                android:gravity="bottom"
+                android:textColor="@color/black">
             </EditText>
         </LinearLayout>
     </LinearLayout>
@@ -82,16 +87,20 @@
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="确定"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/btn1"
-            android:layout_marginLeft="70dp"/>
+            android:layout_weight="1"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"/>
         <Button
             android:id="@+id/cancel2"
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="取消"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/btn1"
-            android:layout_marginLeft="50dp"/>
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="40dp"/>
     </LinearLayout>
 </LinearLayout>

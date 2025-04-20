@@ -25,7 +25,7 @@ public class Dfile {
         return strs;
     }
 
-    static public void write(ArrayList strs, File file){
+    static public void write(ArrayList<String> strs, File file){
         try(FileWriter writer = new FileWriter(file)){
             for (int i = 0; i < strs.size(); i++){
                 writer.write(strs.get(i) + "\n");

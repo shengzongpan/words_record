@@ -14,21 +14,29 @@ import androidx.appcompat.app.AlertDialog;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
-public class DialogPhraseClickAdd implements View.OnClickListener{
+public class DialogPhraseClickAdd implements View.OnClickListener {
 
+    public interface DialogPhraseAddListener {
+        public void update();
+    }
+
+    private DialogPhraseAddListener listener;
     private final Fragment_sentence fragmentSentence;
-    private ArrayList<String> str;
-    private ArrayAdapter<String> adapter;
+    private List<Sentence> phrases;
+    private PhraseAdapter adapter;
     private File externFile;
     private final String filepath = "phrase.txt";
 
-    public DialogPhraseClickAdd(Fragment_sentence fragmentSentence) {
+    public DialogPhraseClickAdd(Fragment_sentence fragmentSentence, DialogPhraseAddListener listener) {
         this.fragmentSentence = fragmentSentence;
+        this.listener = listener;
     }
+
     @Override
     public void onClick(View v) {
-        this.str = fragmentSentence.getSen_str();
+        this.phrases = fragmentSentence.getPhrase();
         externFile = fragmentSentence.getExternfile();
         this.adapter = fragmentSentence.getAdapter();
         show_add_dialog();
@@ -58,17 +66,22 @@ public class DialogPhraseClickAdd implements View.OnClickListener{
         b_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phrase = input_p.getText().toString();
+                String en = input_p.getText().toString();
                 String s_mean = input_m.getText().toString();
-                Sentence sentence = new Sentence(phrase, s_mean);
-                str.add(sentence.getPhrase() + " -- " + sentence.getMean());
-                //通知适配器数据更改
-                adapter.notifyDataSetChanged();
+                Sentence phrase = new Sentence(en, s_mean);
+                phrases.add(phrase);
+                ArrayList<String> str = new ArrayList<>();
+                for (int i = 0; i < phrases.size(); i++) {
+                    str.add(phrases.get(i).getPhrase() + " -- " + phrases.get(i).getMean());
+                }
+                str = Str_deal.sort(str);
+                phrases = Str_deal.convert_p(str);
                 //关闭窗口
                 dialog.dismiss();
-
                 File file = new File(externFile, filepath);
                 Dfile.write(str, file);
+
+                listener.update();
             }
         });
 

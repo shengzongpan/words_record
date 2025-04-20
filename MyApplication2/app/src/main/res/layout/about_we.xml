@@ -4,8 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="start"
-    android:paddingTop="200dp">
+    android:paddingTop="200dp"
+    android:background="@drawable/about_we">
     <TextView
+        android:textIsSelectable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="源码: https://github.com/shengzongpan/words_record.git"
@@ -14,6 +16,7 @@
         android:textColor="@color/black"
         android:layout_marginBottom="10dp"/>
     <TextView
+        android:textIsSelectable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="如果你发现一些bug或者有一些建议，你可以通过我的邮箱联系我"
@@ -22,6 +25,7 @@
         android:textColor="@color/black"
         android:layout_marginBottom="10dp"/>
     <TextView
+        android:textIsSelectable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="QQ邮箱: 3198691272@qq.com"
@@ -30,6 +34,7 @@
         android:textColor="@color/black"
         android:layout_marginBottom="20dp"/>
     <TextView
+        android:textIsSelectable="true"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

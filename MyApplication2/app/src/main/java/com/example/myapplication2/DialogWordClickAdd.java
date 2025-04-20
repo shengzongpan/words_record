@@ -15,19 +15,25 @@ import java.io.File;
 import java.util.ArrayList;
 //添加按钮显示及实现
 public class DialogWordClickAdd implements View.OnClickListener {
+
+    public interface DialogWordAddListener {
+        public void update();
+    }
+    private DialogWordAddListener listener;
     private final Fragment_ci fragment_ci;
-    private ArrayList<String> strs;
+    private ArrayList<Words> words;
     private File externfile;
     private String filepath;
-    private ArrayAdapter<String> adapter;
+    private WordAdapter adapter;
     private TextView tx2;
 
-    public DialogWordClickAdd(Fragment_ci fragment_ci){
+    public DialogWordClickAdd(Fragment_ci fragment_ci, DialogWordAddListener listener){
         this.fragment_ci = fragment_ci;
+        this.listener = listener;
     }
     @Override
     public void onClick(View v) {
-        strs = fragment_ci.getStrs();
+        words = fragment_ci.getWords();
         externfile = fragment_ci.getExternfilef_w();
         filepath = fragment_ci.getFilepath();
         adapter = fragment_ci.getAdapter();
@@ -70,20 +76,21 @@ public class DialogWordClickAdd implements View.OnClickListener {
                 String text2 = input2.getText().toString();
                 String text3 = input3.getText().toString();
                 //传入words对象
-                Words words = new Words(text1, text3, text2);
-                //增加集合
-                strs.add(words.getEn_word() + "  --  " + words.getCixing() + "  --  " + words.getCn_mean());
+                Words word = new Words(text1, text3, text2);
+                words.add(word);
                 //更新record数量
-                tx2.setText("Record数量: " + strs.size());
-                //通知适配器数据已经更改
-                adapter.notifyDataSetChanged();
+                tx2.setText("Record数量: " + words.size());
                 //关闭对话框
                 dialog.dismiss();
-
+                ArrayList<String> str = new ArrayList<>();
+                for(int i = 0; i < words.size(); i++) {
+                    str.add(words.get(i).getEn_word() + "  --  " + words.get(i).getCixing() + "  --  " + words.get(i).getCn_mean());
+                }
                 //获取路径
                 File file = new File(externfile, filepath);
                 //存入文件
-                Dfile.write(strs, file);
+                Dfile.write(str, file);
+                listener.update();
             }
         });
         b_can.setOnClickListener(new View.OnClickListener() {

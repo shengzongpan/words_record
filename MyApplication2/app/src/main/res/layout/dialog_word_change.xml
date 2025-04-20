@@ -62,6 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="请输入..."
+                android:gravity="bottom"
                 android:singleLine="true"
                 android:textSize="15dp"
                 android:textColor="#425066">
@@ -70,6 +71,7 @@
 
             <EditText
                 android:id="@+id/input5"
+                android:gravity="bottom"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="请输入..."
@@ -79,6 +81,7 @@
             </EditText>
 
             <EditText
+                android:gravity="bottom"
                 android:id="@+id/input6"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
@@ -100,7 +103,7 @@
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="确定"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/btn1"
             android:layout_marginLeft="70dp"/>
         <Button
@@ -108,7 +111,7 @@
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="取消"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/btn1"
             android:layout_marginLeft="50dp"/>
     </LinearLayout>

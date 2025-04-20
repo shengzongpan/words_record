@@ -40,5 +40,6 @@
         android:layout_height="wrap_content"
         android:text="下一个"
         android:background="@color/white"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="@color/black"/>
 </LinearLayout>

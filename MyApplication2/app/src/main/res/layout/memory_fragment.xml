@@ -12,5 +12,5 @@
         android:background="@drawable/btn1"
         android:minWidth="150dp"
         android:text="进入默写"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 </LinearLayout>

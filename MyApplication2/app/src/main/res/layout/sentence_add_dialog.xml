@@ -83,7 +83,7 @@
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="确定"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/btn1"
             android:layout_marginLeft="70dp"/>
         <Button
@@ -91,7 +91,7 @@
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="取消"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/btn1"
             android:layout_marginLeft="50dp"/>
     </LinearLayout>

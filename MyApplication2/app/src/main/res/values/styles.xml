@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="horizontal_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/black</item>
+    </style>
+    <style name="horizontal_dotted_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">@drawable/horizontal_dotted_line</item>
+        <item name="android:layerType">software</item>
+    </style>
+</resources>

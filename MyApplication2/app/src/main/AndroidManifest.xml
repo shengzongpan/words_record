@@ -10,7 +10,6 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ico"
         android:label="随记"
-        android:roundIcon="@drawable/ic_launcher_foreground"
         android:supportsRtl="true"
         android:enableOnBackInvokedCallback="true"
         android:theme="@style/Theme.MyApplication2"

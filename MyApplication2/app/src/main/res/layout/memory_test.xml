@@ -55,8 +55,9 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@color/white"
+        android:background="@drawable/btn1"
         android:text="下一个"
+        android:textColor="@color/black"
         android:layout_gravity="center" />
     <TextView
         android:id="@+id/mo_n"

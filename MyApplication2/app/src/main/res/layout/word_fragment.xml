@@ -7,44 +7,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <!-- 计数器 -->
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="50dp"
-            android:text="Record数量: 0"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="5dp"
-            android:textSize="25dp"
-            android:textColor="#425066"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:background="@drawable/radius_border" />
-        <!-- 三个按钮 -->
-        <Button
-            android:id="@+id/b_add"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:text="添加"
-            android:textSize="25dp"
-            android:textColor="@color/white"
-            android:background="@drawable/btn1"
-            android:layout_marginTop="50dp" />
-    </LinearLayout>
-    <!-- 数据 -->
-    <ListView
-        android:id="@+id/list_item"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!-- 计数器 -->
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="50dp"
+                android:text="Record数量: 0"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="5dp"
+                android:textSize="25dp"
+                android:textColor="#425066"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:background="@drawable/radius_border" />
+            <Button
+                android:id="@+id/b_add"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:text="添加"
+                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:background="@drawable/btn1"
+                android:layout_marginTop="50dp" />
+        </LinearLayout>
+        <!-- 数据 -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp">
+            <ListView
+                android:id="@+id/list_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

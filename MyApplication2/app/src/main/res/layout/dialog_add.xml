@@ -15,6 +15,7 @@
             android:layout_height="45dp"
             android:textSize="25dp"
             android:text="添加"
+            android:textColor="@color/black"
             android:textAlignment="center"/>
     </LinearLayout>
     <LinearLayout
@@ -32,6 +33,7 @@
                 android:layout_height="48dp"
                 android:text="Word:"
                 android:textSize="20dp"
+                android:textColor="@color/black"
                 android:layout_gravity="right"
                 android:layout_marginTop="10dp"/>
 
@@ -40,6 +42,7 @@
                 android:layout_height="48dp"
                 android:text="词性:"
                 android:textSize="20dp"
+                android:textColor="@color/black"
                 android:layout_gravity="right" />
 
             <TextView
@@ -47,6 +50,7 @@
                 android:layout_height="48dp"
                 android:text="词义:"
                 android:textSize="20dp"
+                android:textColor="@color/black"
                 android:layout_gravity="right" />
 
         </LinearLayout>
@@ -62,9 +66,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="请输入..."
+                android:gravity="bottom"
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="#425066">
+                android:textColor="@color/black">
                 <requestFocus/>
             </EditText>
 
@@ -73,9 +78,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:hint="请输入..."
+                android:gravity="bottom"
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="#425066">
+                android:textColor="@color/black">
             </EditText>
 
             <EditText
@@ -85,7 +91,8 @@
                 android:hint="请输入..."
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="#425066">
+                android:gravity="bottom"
+                android:textColor="@color/black">
             </EditText>
 
         </LinearLayout>
@@ -100,7 +107,7 @@
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="确定"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/btn1"
             android:layout_marginLeft="70dp"/>
         <Button
@@ -108,7 +115,7 @@
             android:layout_width="80dp"
             android:layout_height="40dp"
             android:text="取消"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/btn1"
             android:layout_marginLeft="50dp"/>
     </LinearLayout>
